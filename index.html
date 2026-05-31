@@ -1,1145 +1,736 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volley Nchabeleng — Percussionist & Composer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="google465429163bde19ba" />
+
+  <title>NEXUS | Connecting Ideas. Building Success.</title>
+
   <style>
-    :root {
-      --earth: #1a0f07;
-      --soil: #2c1a0e;
-      --amber: #c8762a;
-      --gold: #e8a832;
-      --cream: #f2e0c0;
-      --ash: #9e8070;
-      --rust: #8b3a1a;
-      --light: #faf3e8;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--earth);
-      color: var(--cream);
-      font-family: 'Raleway', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
+    body{
+      background:#000;
+      color:white;
+      overflow-x:hidden;
     }
 
-    /* ── GRAIN OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: .4;
+    html{
+      scroll-behavior:smooth;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 3rem;
-      background: linear-gradient(to bottom, rgba(26,15,7,0.95), transparent);
-    }
-    .nav-logo {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: .85rem;
-      letter-spacing: .2em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      color: var(--cream);
-      text-decoration: none;
-      font-size: .75rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-weight: 600;
-      transition: color .3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 6vw 8vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
+    .bg-animation{
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
       background:
-        radial-gradient(ellipse at 70% 40%, rgba(200,118,42,.18) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 80%, rgba(139,58,26,.25) 0%, transparent 55%),
-        linear-gradient(160deg, #0d0804 0%, #1e1008 50%, #2c1a0e 100%);
+      radial-gradient(circle at 20% 20%, rgba(212,175,55,0.08), transparent 25%),
+      radial-gradient(circle at 80% 40%, rgba(212,175,55,0.05), transparent 30%),
+      radial-gradient(circle at 50% 80%, rgba(212,175,55,0.06), transparent 25%);
+      z-index:-1;
+      animation:floatBg 12s infinite alternate ease-in-out;
     }
 
-    /* Animated circles / drum rings */
-    .drum-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(200,118,42,.12);
-      animation: expand 6s ease-out infinite;
-    }
-    .drum-ring:nth-child(1) { width: 300px; height: 300px; top: 20%; right: 15%; animation-delay: 0s; }
-    .drum-ring:nth-child(2) { width: 500px; height: 500px; top: 12%; right: 10%; animation-delay: 1.5s; }
-    .drum-ring:nth-child(3) { width: 700px; height: 700px; top: 4%; right: 5%; animation-delay: 3s; }
-    @keyframes expand {
-      0%   { opacity: .5; transform: scale(.9); }
-      100% { opacity: 0; transform: scale(1.15); }
+    @keyframes floatBg{
+      from{
+        transform:translateY(0px);
+      }
+      to{
+        transform:translateY(-30px);
+      }
     }
 
-    /* Floating dots */
-    .dot {
-      position: absolute;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      opacity: 0;
-      animation: floatDot 8s ease-in-out infinite;
-    }
-    .dot:nth-child(4)  { left: 8%;  top: 70%; animation-delay: 0s;   width:3px; height:3px; }
-    .dot:nth-child(5)  { left: 15%; top: 30%; animation-delay: 2s; }
-    .dot:nth-child(6)  { left: 82%; top: 60%; animation-delay: 4s;   width:2px; height:2px; }
-    .dot:nth-child(7)  { left: 55%; top: 15%; animation-delay: 1s; }
-    .dot:nth-child(8)  { left: 40%; top: 80%; animation-delay: 3s;   width:5px; height:5px; }
-    @keyframes floatDot {
-      0%   { opacity:0; transform: translateY(0); }
-      30%  { opacity:.7; }
-      100% { opacity:0; transform: translateY(-60px); }
+    nav{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      background:#050505;
+      border-bottom:1px solid #d4af37;
+      position:sticky;
+      top:0;
+      z-index:1000;
     }
 
-    .hero-content { position: relative; z-index: 2; }
-    .hero-tag {
-      display: inline-block;
-      font-size: .7rem;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--amber);
-      padding: .35rem .9rem;
-      margin-bottom: 1.8rem;
-      opacity: 0;
-      animation: fadeUp .8s .2s forwards;
-    }
-    .hero-name {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 900;
-      line-height: 1;
-      color: var(--light);
-      opacity: 0;
-      animation: fadeUp .9s .4s forwards;
-    }
-    .hero-name span { color: var(--gold); }
-    .hero-sub {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      color: var(--ash);
-      margin-top: 1rem;
-      letter-spacing: .05em;
-      opacity: 0;
-      animation: fadeUp .9s .6s forwards;
-    }
-    .hero-cta {
-      margin-top: 2.5rem;
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp .9s .8s forwards;
-    }
-    .btn {
-      display: inline-block;
-      padding: .8rem 2rem;
-      font-size: .75rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all .3s;
-    }
-    .btn-primary {
-      background: var(--amber);
-      color: var(--earth);
-    }
-    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent;
-      color: var(--cream);
-      border: 1px solid var(--ash);
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem; right: 6vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .4rem;
-      font-size: .65rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--ash);
-      z-index: 2;
-      opacity: 0;
-      animation: fadeIn 1s 1.5s forwards;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, var(--amber), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: .3; }
-      50% { opacity: 1; }
+    .logo{
+      font-size:32px;
+      font-weight:bold;
+      color:#d4af37;
+      letter-spacing:3px;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    nav ul{
+      display:flex;
+      gap:25px;
+      list-style:none;
     }
 
-    /* ── SECTION LAYOUT ── */
-    section { padding: 7rem 6vw; position: relative; }
-
-    .section-label {
-      font-size: .65rem;
-      letter-spacing: .35em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--light);
-      line-height: 1.1;
-      margin-bottom: 2rem;
-    }
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(to right, var(--amber), transparent);
-      margin: 1.5rem 0 2.5rem;
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
     }
 
-    /* ── ABOUT ── */
-    #about {
-      background: linear-gradient(135deg, #1e1008, #2c1a0e);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
+    nav ul li a:hover{
+      color:#d4af37;
     }
-    .about-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-    .about-frame {
-      width: 360px; height: 460px;
-      border: 1px solid rgba(200,118,42,.3);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .about-frame::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      background: linear-gradient(135deg, var(--amber) 0%, transparent 40%, transparent 60%, var(--rust) 100%);
-      opacity: .3;
-      pointer-events: none;
-    }
-    .about-icon-bg {
-      width: 100%;
-      height: 100%;
+
+    .hero{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:20px;
       background:
-        radial-gradient(ellipse at 50% 40%, rgba(200,118,42,.2), transparent 70%),
-        linear-gradient(180deg, #2c1a0e 0%, #1a0f07 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    .drum-svg { opacity: .85; }
-    .corner-tag {
-      position: absolute;
-      bottom: 1.5rem; right: 1.5rem;
-      font-size: .6rem;
-      letter-spacing: .2em;
-      color: var(--amber);
-      text-transform: uppercase;
-      border: 1px solid var(--rust);
-      padding: .3rem .7rem;
-    }
-    .stat-badge {
-      position: absolute;
-      top: -1.5rem; left: -2rem;
-      background: var(--amber);
-      color: var(--earth);
-      padding: 1rem 1.2rem;
-      font-family: 'Cinzel Decorative', serif;
-    }
-    .stat-badge .num {
-      font-size: 2rem;
-      font-weight: 900;
-      line-height: 1;
-      display: block;
-    }
-    .stat-badge .lbl {
-      font-size: .55rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+      linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+      url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop') center/cover;
     }
 
-    .about-text p {
-      line-height: 1.9;
-      color: var(--cream);
-      opacity: .85;
-      font-size: .95rem;
-      margin-bottom: 1.2rem;
-    }
-    .about-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .6rem;
-      margin-top: 2rem;
-    }
-    .pill {
-      font-size: .65rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      border: 1px solid rgba(200,118,42,.4);
-      padding: .4rem 1rem;
-      color: var(--amber);
-      font-weight: 600;
+    .hero h1{
+      font-size:85px;
+      color:#d4af37;
+      letter-spacing:4px;
+      margin-bottom:10px;
     }
 
-    /* ── HIGHLIGHTS ── */
-    #highlights {
-      background: var(--earth);
-    }
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px;
-      background: rgba(200,118,42,.15);
-      margin-top: 3rem;
-    }
-    .highlight-card {
-      background: var(--earth);
-      padding: 2.5rem 2rem;
-      transition: background .3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .highlight-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--amber), transparent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .4s;
-    }
-    .highlight-card:hover::after { transform: scaleX(1); }
-    .highlight-card:hover { background: rgba(44,26,14,.9); }
-    .highlight-year {
-      font-size: .65rem;
-      letter-spacing: .2em;
-      color: var(--amber);
-      text-transform: uppercase;
-      margin-bottom: .6rem;
-    }
-    .highlight-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: var(--light);
-      line-height: 1.4;
-    }
-    .highlight-desc {
-      font-size: .8rem;
-      color: var(--ash);
-      margin-top: .5rem;
-      line-height: 1.6;
-    }
-    .highlight-icon {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
+    .hero p{
+      font-size:24px;
+      color:#ddd;
+      margin-bottom:30px;
     }
 
-    /* ── AWARDS ── */
-    #awards {
-      background: linear-gradient(135deg, #2c1a0e, #1a0f07);
-    }
-    .awards-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .award-item {
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-      padding: 1.8rem;
-      border: 1px solid rgba(200,118,42,.2);
-      transition: border-color .3s, transform .3s;
-    }
-    .award-item:hover { border-color: var(--amber); transform: translateY(-3px); }
-    .award-star {
-      font-size: 1.8rem;
-      flex-shrink: 0;
-      margin-top: .2rem;
-    }
-    .award-text h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--gold);
-      margin-bottom: .3rem;
-    }
-    .award-text p {
-      font-size: .78rem;
-      color: var(--ash);
-      line-height: 1.6;
+    .hero button{
+      padding:15px 35px;
+      border:none;
+      border-radius:40px;
+      background:#d4af37;
+      color:black;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
     }
 
-    /* ── DISCOGRAPHY ── */
-    #discography {
-      background: var(--earth);
-    }
-    .disc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .disc-card {
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-    }
-    .disc-art {
-      width: 100%;
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, #2c1a0e, #1a0f07);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      transition: transform .4s;
-    }
-    .disc-art::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: conic-gradient(from 0deg, transparent, rgba(200,118,42,.15), transparent, rgba(139,58,26,.1), transparent);
-      animation: spinConic 12s linear infinite;
-    }
-    @keyframes spinConic { to { transform: rotate(360deg); } }
-    .disc-art-inner {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-    .disc-circle {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      border: 2px solid rgba(200,118,42,.5);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-    }
-    .disc-card:hover .disc-art { transform: scale(1.03); }
-    .disc-info {
-      padding: .9rem 0 0;
-    }
-    .disc-title {
-      font-family: 'Playfair Display', serif;
-      font-size: .9rem;
-      color: var(--light);
-    }
-    .disc-year {
-      font-size: .7rem;
-      color: var(--ash);
-      margin-top: .2rem;
-      letter-spacing: .1em;
+    .hero button:hover{
+      background:white;
     }
 
-    /* ── TOURS / GLOBAL PRESENCE ── */
-    #global {
-      background: linear-gradient(160deg, #1e1008, #2c1a0e);
-    }
-    .continents-wrap {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1px;
-      background: rgba(200,118,42,.1);
-      text-align: center;
-    }
-    .continent-box {
-      background: var(--earth);
-      padding: 2rem 1rem;
-      font-size: .7rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--amber);
-      font-weight: 600;
-      transition: background .3s;
-    }
-    .continent-box:hover { background: rgba(44,26,14,.9); }
-    .continent-icon { font-size: 2rem; display: block; margin-bottom: .6rem; }
-
-    .tours-marquee {
-      margin-top: 3rem;
-      overflow: hidden;
-      padding: 1.2rem 0;
-      border-top: 1px solid rgba(200,118,42,.2);
-      border-bottom: 1px solid rgba(200,118,42,.2);
-    }
-    .marquee-track {
-      display: flex;
-      gap: 3rem;
-      white-space: nowrap;
-      animation: marqueScroll 25s linear infinite;
-    }
-    @keyframes marqueScroll { to { transform: translateX(-50%); } }
-    .marquee-item {
-      font-size: .7rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--ash);
-      flex-shrink: 0;
-    }
-    .marquee-item span { color: var(--amber); margin: 0 .5rem; }
-
-    /* ── THEATRE ── */
-    #theatre {
-      background: var(--earth);
-    }
-    .theatre-list {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .theatre-row {
-      display: flex;
-      align-items: center;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid rgba(200,118,42,.1);
-      gap: 2rem;
-      transition: padding-left .3s;
-      cursor: default;
-    }
-    .theatre-row:hover { padding-left: 1rem; }
-    .theatre-row:hover .t-num { color: var(--gold); }
-    .t-num {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: .75rem;
-      color: var(--rust);
-      width: 2rem;
-      flex-shrink: 0;
-      transition: color .3s;
-    }
-    .t-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--light);
-      flex: 1;
-    }
-    .t-year {
-      font-size: .7rem;
-      letter-spacing: .15em;
-      color: var(--ash);
-      text-transform: uppercase;
-    }
-    .t-badge {
-      font-size: .6rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      background: rgba(200,118,42,.15);
-      color: var(--amber);
-      border: 1px solid rgba(200,118,42,.3);
-      padding: .2rem .7rem;
+    section{
+      padding:90px 10%;
     }
 
-    /* ── CONTACT ── */
-    #contact {
-      background: linear-gradient(135deg, #2c1a0e, #1a0f07);
-      text-align: center;
-    }
-    .contact-inner {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .contact-quote {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      color: var(--ash);
-      line-height: 1.7;
-      margin-bottom: 3rem;
-    }
-    .contact-quote cite {
-      display: block;
-      font-style: normal;
-      font-size: .7rem;
-      letter-spacing: .2em;
-      color: var(--amber);
-      text-transform: uppercase;
-      margin-top: 1rem;
-    }
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: 3rem;
-    }
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: .9rem;
-      color: var(--cream);
-      text-decoration: none;
-      transition: color .3s;
-    }
-    .contact-link:hover { color: var(--gold); }
-    .contact-link-icon {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(200,118,42,.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
+    .section-title{
+      text-align:center;
+      color:#d4af37;
+      font-size:42px;
+      margin-bottom:40px;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #0d0804;
-      padding: 2rem 6vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: .65rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--ash);
-      border-top: 1px solid rgba(200,118,42,.1);
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-logo {
-      font-family: 'Cinzel Decorative', serif;
-      color: var(--gold);
-      font-size: .7rem;
+    .about-container,
+    .vision-container,
+    .members{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
     }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .card,
+    .member-box{
+      background:#111;
+      border:1px solid #d4af37;
+      padding:30px;
+      border-radius:15px;
+      transition:0.4s;
+      text-align:center;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      #about { grid-template-columns: 1fr; }
-      .about-visual { display: none; }
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      section { padding: 5rem 5vw; }
-      .continents-wrap { grid-template-columns: repeat(3, 1fr); }
+    .card:hover,
+    .member-box:hover{
+      transform:translateY(-12px) scale(1.02);
+      box-shadow:
+      0 0 10px rgba(212,175,55,0.4),
+      0 0 30px rgba(212,175,55,0.2),
+      0 0 60px rgba(212,175,55,0.1);
     }
-    @media (max-width: 480px) {
-      .nav-links { display: none; }
-      .continents-wrap { grid-template-columns: repeat(2, 1fr); }
+
+    .card h3,
+    .member-box h4{
+      color:#d4af37;
+      margin-bottom:15px;
     }
+
+    .card p,
+    .member-box p{
+      color:#ddd;
+      line-height:1.8;
+    }
+
+    .member-box img{
+      width:110px;
+      height:110px;
+      border-radius:50%;
+      border:3px solid #d4af37;
+      margin-bottom:15px;
+      object-fit:cover;
+    }
+
+    .chat-box{
+      background:#111;
+      border:1px solid #d4af37;
+      padding:30px;
+      border-radius:15px;
+    }
+
+    .messages{
+      height:250px;
+      overflow-y:auto;
+      background:#000;
+      padding:20px;
+      border-radius:10px;
+      margin-bottom:20px;
+    }
+
+    .message{
+      background:#1a1a1a;
+      padding:10px;
+      border-left:4px solid #d4af37;
+      margin-bottom:15px;
+      border-radius:5px;
+    }
+
+    .chat-input{
+      display:flex;
+      gap:10px;
+    }
+
+    .chat-input input{
+      flex:1;
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      background:#222;
+      color:white;
+    }
+
+    .chat-input button{
+      padding:15px 25px;
+      border:none;
+      border-radius:10px;
+      background:#d4af37;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .founders{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:30px;
+    }
+
+    .founder-card{
+      width:300px;
+      background:#111;
+      border:1px solid #d4af37;
+      border-radius:15px;
+      padding:30px;
+      text-align:center;
+    }
+
+    .founder-card h3{
+      color:#d4af37;
+      margin-bottom:10px;
+    }
+
+    form{
+      background:#111;
+      border:1px solid #d4af37;
+      padding:40px;
+      border-radius:20px;
+      max-width:800px;
+      margin:auto;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:10px;
+      color:#d4af37;
+      font-weight:bold;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      background:#222;
+      color:white;
+    }
+
+    textarea{
+      resize:none;
+      height:130px;
+    }
+
+    form button{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:12px;
+      background:#d4af37;
+      color:black;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    footer{
+      background:#050505;
+      border-top:1px solid #d4af37;
+      padding:30px;
+      text-align:center;
+    }
+
+    footer h3{
+      color:#d4af37;
+      margin-bottom:10px;
+    }
+
+    .hidden{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 1s ease;
+    }
+
+    .show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero h1{
+        font-size:55px;
+      }
+
+      .hero p{
+        font-size:18px;
+      }
+
+    }
+
   </style>
 </head>
+
 <body>
 
-  <!-- NAV -->
+  <div class="bg-animation"></div>
+
+  <!-- NAVBAR -->
+
   <nav>
-    <div class="nav-logo">Volley Nchabeleng</div>
-    <ul class="nav-links">
+
+    <div class="logo">NEXUS</div>
+
+    <ul>
       <li><a href="#about">About</a></li>
-      <li><a href="#highlights">Journey</a></li>
-      <li><a href="#awards">Awards</a></li>
-      <li><a href="#discography">Music</a></li>
-      <li><a href="#theatre">Theatre</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#members">Members</a></li>
+      <li><a href="#chat">Group Chat</a></li>
+      <li><a href="#founders">Founders</a></li>
+      <li><a href="#join">Join</a></li>
     </ul>
+
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg">
-      <div class="drum-ring"></div>
-      <div class="drum-ring"></div>
-      <div class="drum-ring"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-    <div class="hero-content">
-      <div class="hero-tag">International Percussionist &amp; Composer</div>
-      <h1 class="hero-name">Volley<br><span>Nchabeleng</span></h1>
-      <p class="hero-sub">Ambassador of African Indigenous Sound &nbsp;·&nbsp; 6 Continents &nbsp;·&nbsp; Limpopo, South Africa</p>
-      <div class="hero-cta">
-        <a href="#about" class="btn btn-primary">Discover His Story</a>
-        <a href="#contact" class="btn btn-outline">Book / Contact</a>
-      </div>
-    </div>
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
+
+  <section class="hero">
+
+    <h1>NEXUS</h1>
+
+    <p>Connecting Ideas. Building Success.</p>
+
+    <a href="#join">
+      <button>Apply For Membership</button>
+    </a>
+
   </section>
 
   <!-- ABOUT -->
+
   <section id="about">
-    <div class="about-visual">
-      <div class="about-frame">
-        <div class="about-icon-bg">
-          <!-- Percussion SVG illustration -->
-          <svg class="drum-svg" width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Main drum body -->
-            <ellipse cx="90" cy="60" rx="55" ry="18" stroke="#c8762a" stroke-width="1.5" fill="rgba(200,118,42,0.06)"/>
-            <rect x="35" y="60" width="110" height="60" rx="4" stroke="#c8762a" stroke-width="1.5" fill="rgba(200,118,42,0.04)"/>
-            <ellipse cx="90" cy="120" rx="55" ry="18" stroke="#c8762a" stroke-width="1.5" fill="rgba(200,118,42,0.06)"/>
-            <!-- Drum straps -->
-            <line x1="50" y1="60" x2="50" y2="120" stroke="rgba(200,118,42,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
-            <line x1="130" y1="60" x2="130" y2="120" stroke="rgba(200,118,42,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
-            <line x1="70" y1="60" x2="70" y2="120" stroke="rgba(200,118,42,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
-            <line x1="110" y1="60" x2="110" y2="120" stroke="rgba(200,118,42,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
-            <!-- Drumsticks -->
-            <line x1="60" y1="20" x2="85" y2="58" stroke="#e8a832" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="60" cy="18" r="5" fill="rgba(232,168,50,0.4)" stroke="#e8a832" stroke-width="1.5"/>
-            <line x1="120" y1="15" x2="97" y2="56" stroke="#e8a832" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="120" cy="13" r="5" fill="rgba(232,168,50,0.4)" stroke="#e8a832" stroke-width="1.5"/>
-            <!-- Sound waves -->
-            <path d="M20 90 Q30 80 20 70" stroke="rgba(200,118,42,0.4)" stroke-width="1.5" fill="none"/>
-            <path d="M12 94 Q25 80 12 66" stroke="rgba(200,118,42,0.25)" stroke-width="1.5" fill="none"/>
-            <path d="M160 90 Q150 80 160 70" stroke="rgba(200,118,42,0.4)" stroke-width="1.5" fill="none"/>
-            <path d="M168 94 Q155 80 168 66" stroke="rgba(200,118,42,0.25)" stroke-width="1.5" fill="none"/>
-            <!-- Decorative pattern -->
-            <circle cx="90" cy="90" r="12" stroke="rgba(200,118,42,0.2)" stroke-width="1" fill="none"/>
-            <circle cx="90" cy="90" r="5" fill="rgba(200,118,42,0.15)" stroke="#c8762a" stroke-width="1"/>
-            <!-- Stars / dots -->
-            <circle cx="90" cy="150" r="2" fill="#c8762a" opacity="0.5"/>
-            <circle cx="80" cy="155" r="1.5" fill="#c8762a" opacity="0.4"/>
-            <circle cx="100" cy="155" r="1.5" fill="#c8762a" opacity="0.4"/>
-          </svg>
-          <div style="text-align:center; padding: 0 1.5rem;">
-            <div style="font-family:'Cinzel Decorative',serif; font-size:.65rem; letter-spacing:.15em; color:var(--amber);">Born 1978 · Masemola, Limpopo</div>
-          </div>
-        </div>
-        <div class="corner-tag">Since 2001</div>
+
+    <h2 class="section-title">About Nexus</h2>
+
+    <div class="about-container">
+
+      <div class="card">
+        <h3>Private Success Network</h3>
+        <p>
+          Nexus is an exclusive community for ambitious and financially successful
+          young individuals who want to connect, collaborate, and exchange powerful ideas.
+        </p>
       </div>
-      <div class="stat-badge">
-        <span class="num">6</span>
-        <span class="lbl">Continents</span>
+
+      <div class="card">
+        <h3>Elite Connections</h3>
+        <p>
+          The platform creates opportunities for networking, mentorship,
+          partnerships, investment conversations, and meaningful relationships.
+        </p>
       </div>
+
+      <div class="card">
+        <h3>Growth Environment</h3>
+        <p>
+          Members inspire each other to achieve higher levels of success,
+          innovation, leadership, and influence.
+        </p>
+      </div>
+
     </div>
 
-    <div class="about-text">
-      <div class="section-label">The Artist</div>
-      <h2 class="section-title">Ambassador of<br>Indigenous Sound</h2>
-      <div class="divider"></div>
-      <p>Born in the village of Masemola (Thabampshe) in Limpopo Province, South Africa, Volley Nchabeleng has spent over two decades travelling the world as a proud ambassador of African indigenous knowledge and sound.</p>
-      <p>A multi-talented percussionist, composer, producer and singer — Volley studied music at the Sibikwa Arts Centre and the University of South Africa (UNISA). His musical genius draws from the world's diverse sounds while remaining deeply rooted in Africa's pre-colonial heritage.</p>
-      <p>He has collaborated with creatives across six continents, worked alongside legendary director William Kentridge, and contributed his artistry to major television productions including the acclaimed DStv series <em>Shaka Ilembe</em>.</p>
-      <div class="about-pills">
-        <span class="pill">Percussion</span>
-        <span class="pill">Composition</span>
-        <span class="pill">Production</span>
-        <span class="pill">Playback Theatre</span>
-        <span class="pill">Indigenous Instruments</span>
-        <span class="pill">Soundscapes</span>
-        <span class="pill">Vocal</span>
-      </div>
-    </div>
   </section>
 
-  <!-- PERFORMANCE HIGHLIGHTS -->
-  <section id="highlights">
-    <div class="section-label reveal">Journey</div>
-    <h2 class="section-title reveal">Milestones Across<br>the Globe</h2>
-    <div class="highlights-grid">
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🌍</div>
-        <div class="highlight-year">2002</div>
-        <div class="highlight-title">UN World Summit Opening Ceremony</div>
-        <div class="highlight-desc">Performed at the opening ceremony of the United Nations World Summit, Johannesburg.</div>
+  <!-- VISION -->
+
+  <section id="vision">
+
+    <h2 class="section-title">Vision & Mission</h2>
+
+    <div class="vision-container">
+
+      <div class="card">
+        <h3>Vision</h3>
+        <p>
+          To build Africa's most influential private network
+          of young successful individuals.
+        </p>
       </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🎂</div>
-        <div class="highlight-year">2003</div>
-        <div class="highlight-title">Nelson Mandela Birthday Celebration</div>
-        <div class="highlight-desc">Honoured to perform at the birthday celebration of Nelson Mandela in Johannesburg.</div>
+
+      <div class="card">
+        <h3>Mission</h3>
+        <p>
+          To connect ambitious achievers through strategic collaboration,
+          meaningful conversations, and innovation.
+        </p>
       </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🎺</div>
-        <div class="highlight-year">2005</div>
-        <div class="highlight-title">Puisano Jazz Festival</div>
-        <div class="highlight-desc">Shared the stage with Hugh Masekela, Moses Khumalo and Akon.</div>
-      </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🏅</div>
-        <div class="highlight-year">2015</div>
-        <div class="highlight-title">Standard Bank Silver Ovation Award</div>
-        <div class="highlight-desc">"Morwa the Rising Son" won the Standard Bank Silver Ovation Award at the National Arts Festival.</div>
-      </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🐉</div>
-        <div class="highlight-year">2018</div>
-        <div class="highlight-title">BRICS Cultural Festival — China</div>
-        <div class="highlight-desc">Represented South Africa as ambassador of African sound at the BRICS cultural festival.</div>
-      </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🌐</div>
-        <div class="highlight-year">2021</div>
-        <div class="highlight-title">William Kentridge — Luxembourg</div>
-        <div class="highlight-desc">Toured Luxembourg with legendary South African director and artist William Kentridge.</div>
-      </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🎬</div>
-        <div class="highlight-year">2023</div>
-        <div class="highlight-title">Shaka Ilembe — DStv Series</div>
-        <div class="highlight-desc">Percussionist and soundscape creator for the major DStv television series Shaka Ilembe.</div>
-      </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🇮🇳</div>
-        <div class="highlight-year">2024</div>
-        <div class="highlight-title">Headlined Ruhaniyat Festival — India</div>
-        <div class="highlight-desc">Headlined the prestigious annual Ruhaniyat festival held across multiple provinces in India.</div>
-      </div>
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🇺🇸</div>
-        <div class="highlight-year">2025</div>
-        <div class="highlight-title">African Orchestra Experience — SA State Theatre</div>
-        <div class="highlight-desc">Produced live African Orchestra Experience at the South African State Theatre; toured India and USA.</div>
-      </div>
+
     </div>
+
   </section>
 
-  <!-- AWARDS -->
-  <section id="awards">
-    <div class="section-label reveal">Recognition</div>
-    <h2 class="section-title reveal">Awards &amp; Nominations</h2>
-    <div class="divider reveal"></div>
-    <div class="awards-list">
-      <div class="award-item reveal">
-        <div class="award-star">🏆</div>
-        <div class="award-text">
-          <h4>Outstanding Artist of the Year — 2024</h4>
-          <p>Cultural and Creative Industry Awards (CCIA) — awarded by the Minister of Arts and Culture, South Africa.</p>
-        </div>
+  <!-- MEMBERS -->
+
+  <section id="members">
+
+    <h2 class="section-title">Community Dashboard</h2>
+
+    <div class="members">
+
+      <div class="member-box">
+        <img src="IMG-20241123-WA0026.jpg" alt="Events N.">
+        <h4>Events N.</h4>
+        <p>Founder</p>
       </div>
-      <div class="award-item reveal">
-        <div class="award-star">🎭</div>
-        <div class="award-text">
-          <h4>Naledi Theatre Awards — Nominee</h4>
-          <p>Nominated for Best Soundscape, recognising his exceptional work in live theatre productions.</p>
-        </div>
+
+      <div class="member-box">
+        <img src="IMG-20260520-WA0033.jpg" alt="Boitumelo T.">
+        <h4>Boitumelo T.</h4>
+        <p>Founder</p>
       </div>
-      <div class="award-item reveal">
-        <div class="award-star">🎵</div>
-        <div class="award-text">
-          <h4>SATMA Awards — Nominee</h4>
-          <p>Nominated for Best Sepedi Album, honouring his contribution to indigenous South African music.</p>
-        </div>
+
+      <div class="member-box">
+        <img src="https://randomuser.me/api/portraits/men/51.jpg">
+        <h4>James T.</h4>
+        <p>Business Strategist</p>
       </div>
-      <div class="award-item reveal">
-        <div class="award-star">🥈</div>
-        <div class="award-text">
-          <h4>Standard Bank Silver Ovation Award — 2015</h4>
-          <p>Won with "Morwa the Rising Son" at the National Arts Festival — one of South Africa's most prestigious arts awards.</p>
-        </div>
+
+      <div class="member-box">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg">
+        <h4>Amanda P.</h4>
+        <p>Startup Founder</p>
       </div>
+
     </div>
+
   </section>
 
-  <!-- DISCOGRAPHY -->
-  <section id="discography">
-    <div class="section-label reveal">Discography</div>
-    <h2 class="section-title reveal">Selected Works</h2>
-    <div class="disc-grid">
-      <div class="disc-card reveal">
-        <div class="disc-art">
-          <div class="disc-art-inner">
-            <div class="disc-circle">🥁</div>
-          </div>
+  <!-- CHAT -->
+
+  <section id="chat">
+
+    <h2 class="section-title">Members Group Chat</h2>
+
+    <div class="chat-box">
+
+      <div class="messages" id="messages">
+
+        <div class="message">
+          <strong>David:</strong> Looking for investors in fintech innovation.
         </div>
-        <div class="disc-info">
-          <div class="disc-title">Bo Kae Botho</div>
-          <div class="disc-year">2020 · Live @ SA State Theatre</div>
+
+        <div class="message">
+          <strong>Sarah:</strong> Interested. Let's connect after this meeting.
         </div>
+
       </div>
-      <div class="disc-card reveal">
-        <div class="disc-art">
-          <div class="disc-art-inner">
-            <div class="disc-circle">🎶</div>
-          </div>
-        </div>
-        <div class="disc-info">
-          <div class="disc-title">Live from V1 Studio SABC</div>
-          <div class="disc-year">2020 · Live Recording</div>
-        </div>
+
+      <div class="chat-input">
+
+        <input type="text" id="chatMessage" placeholder="Type your message...">
+
+        <button onclick="sendMessage()">Send</button>
+
       </div>
-      <div class="disc-card reveal">
-        <div class="disc-art">
-          <div class="disc-art-inner">
-            <div class="disc-circle">✝️</div>
-          </div>
-        </div>
-        <div class="disc-info">
-          <div class="disc-title">Gospel in Africa — Revelation Project 3</div>
-          <div class="disc-year">2021 · Live @ SA State Theatre</div>
-        </div>
-      </div>
-      <div class="disc-card reveal">
-        <div class="disc-art">
-          <div class="disc-art-inner">
-            <div class="disc-circle">🌍</div>
-          </div>
-        </div>
-        <div class="disc-info">
-          <div class="disc-title">Amogelang</div>
-          <div class="disc-year">2022 · Single</div>
-        </div>
-      </div>
-      <div class="disc-card reveal">
-        <div class="disc-art">
-          <div class="disc-art-inner">
-            <div class="disc-circle">🌙</div>
-          </div>
-        </div>
-        <div class="disc-info">
-          <div class="disc-title">One Night in Africa</div>
-          <div class="disc-year">2023 · Live @ Joburg Theatre</div>
-        </div>
-      </div>
-      <div class="disc-card reveal">
-        <div class="disc-art">
-          <div class="disc-art-inner">
-            <div class="disc-circle">📖</div>
-          </div>
-        </div>
-        <div class="disc-info">
-          <div class="disc-title">Ke Bale</div>
-          <div class="disc-year">2025 · Live @ SA State Theatre</div>
-        </div>
-      </div>
+
     </div>
+
   </section>
 
-  <!-- GLOBAL PRESENCE -->
-  <section id="global">
-    <div class="section-label reveal">Global Reach</div>
-    <h2 class="section-title reveal">6 Continents,<br>One African Voice</h2>
-    <div class="divider reveal"></div>
-    <div class="continents-wrap reveal">
-      <div class="continent-box"><span class="continent-icon">🌍</span>Africa</div>
-      <div class="continent-box"><span class="continent-icon">🌍</span>Europe</div>
-      <div class="continent-box"><span class="continent-icon">🌏</span>Asia</div>
-      <div class="continent-box"><span class="continent-icon">🌎</span>Americas</div>
-      <div class="continent-box"><span class="continent-icon">🌏</span>Australia</div>
-      <div class="continent-box"><span class="continent-icon">🏔️</span>Middle East</div>
-    </div>
-    <div class="tours-marquee">
-      <div class="marquee-track">
-        <span class="marquee-item">India<span>·</span></span>
-        <span class="marquee-item">Germany<span>·</span></span>
-        <span class="marquee-item">Belgium<span>·</span></span>
-        <span class="marquee-item">Holland<span>·</span></span>
-        <span class="marquee-item">France<span>·</span></span>
-        <span class="marquee-item">Australia<span>·</span></span>
-        <span class="marquee-item">China<span>·</span></span>
-        <span class="marquee-item">Luxembourg<span>·</span></span>
-        <span class="marquee-item">Norway<span>·</span></span>
-        <span class="marquee-item">Botswana<span>·</span></span>
-        <span class="marquee-item">Zimbabwe<span>·</span></span>
-        <span class="marquee-item">Greece<span>·</span></span>
-        <span class="marquee-item">Turkey<span>·</span></span>
-        <span class="marquee-item">Bulgaria<span>·</span></span>
-        <span class="marquee-item">Dubai<span>·</span></span>
-        <span class="marquee-item">USA<span>·</span></span>
-        <!-- Duplicate for seamless loop -->
-        <span class="marquee-item">India<span>·</span></span>
-        <span class="marquee-item">Germany<span>·</span></span>
-        <span class="marquee-item">Belgium<span>·</span></span>
-        <span class="marquee-item">Holland<span>·</span></span>
-        <span class="marquee-item">France<span>·</span></span>
-        <span class="marquee-item">Australia<span>·</span></span>
-        <span class="marquee-item">China<span>·</span></span>
-        <span class="marquee-item">Luxembourg<span>·</span></span>
-        <span class="marquee-item">Norway<span>·</span></span>
-        <span class="marquee-item">Botswana<span>·</span></span>
-        <span class="marquee-item">Zimbabwe<span>·</span></span>
-        <span class="marquee-item">Greece<span>·</span></span>
-        <span class="marquee-item">Turkey<span>·</span></span>
-        <span class="marquee-item">Bulgaria<span>·</span></span>
-        <span class="marquee-item">Dubai<span>·</span></span>
-        <span class="marquee-item">USA<span>·</span></span>
+  <!-- STATS -->
+
+  <section id="stats">
+
+    <h2 class="section-title">Nexus In Numbers</h2>
+
+    <div class="members">
+
+      <div class="member-box">
+        <h2>2,500+</h2>
+        <p>Elite Members</p>
       </div>
+
+      <div class="member-box">
+        <h2>$120M+</h2>
+        <p>Business Value Connected</p>
+      </div>
+
+      <div class="member-box">
+        <h2>40+</h2>
+        <p>Countries Represented</p>
+      </div>
+
+      <div class="member-box">
+        <h2>300+</h2>
+        <p>Startups & Ventures</p>
+      </div>
+
     </div>
+
   </section>
 
-  <!-- THEATRE -->
-  <section id="theatre">
-    <div class="section-label reveal">Stage Work</div>
-    <h2 class="section-title reveal">Theatre Productions</h2>
-    <div class="divider reveal"></div>
-    <div class="theatre-list">
-      <div class="theatre-row reveal">
-        <span class="t-num">01</span>
-        <span class="t-title">Africa My Love</span>
-        <span class="t-year">2009 – 2012</span>
-        <span class="t-badge">European Tour</span>
+  <!-- FOUNDERS -->
+
+  <section id="founders">
+
+    <h2 class="section-title">Founders</h2>
+
+    <div class="founders">
+
+      <div class="founder-card">
+        <h3>Boitumelo Michael Tladi</h3>
+        <p>Founder of Nexus</p>
       </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">02</span>
-        <span class="t-title">Makhulu — by Portia Mashigo</span>
-        <span class="t-year">2009 – 2012</span>
-        <span class="t-badge">European Tour</span>
+
+      <div class="founder-card">
+        <h3>Nchabeleng Events</h3>
+        <p>Co-Founder of Nexus</p>
       </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">03</span>
-        <span class="t-title">eKhaya — Tribhangi Dance Company</span>
-        <span class="t-year">2009</span>
-        <span class="t-badge">Music Director</span>
-      </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">04</span>
-        <span class="t-title">Morwa the Rising Son</span>
-        <span class="t-year">2015</span>
-        <span class="t-badge">🥈 Silver Ovation</span>
-      </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">05</span>
-        <span class="t-title">Mother Africa and Her Melody</span>
-        <span class="t-year">2019</span>
-        <span class="t-badge">One-Hander Play</span>
-      </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">06</span>
-        <span class="t-title">The Mother of All Eating</span>
-        <span class="t-year">2021</span>
-        <span class="t-badge">Market Theatre</span>
-      </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">07</span>
-        <span class="t-title">African Exodus</span>
-        <span class="t-year">2023</span>
-        <span class="t-badge">Germany Tour</span>
-      </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">08</span>
-        <span class="t-title">The Terrified Talabalushi</span>
-        <span class="t-year">2024</span>
-        <span class="t-badge">Market Theatre</span>
-      </div>
-      <div class="theatre-row reveal">
-        <span class="t-num">09</span>
-        <span class="t-title">Houseboy</span>
-        <span class="t-year">2024</span>
-        <span class="t-badge">Rhode Island, USA</span>
-      </div>
+
     </div>
+
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-inner">
-      <div class="section-label reveal">Get In Touch</div>
-      <h2 class="section-title reveal">Book &amp; Connect</h2>
-      <div class="divider reveal" style="margin: 1.5rem auto 2.5rem;"></div>
-      <blockquote class="contact-quote reveal">
-        "African musical instruments form African history and culture as they carry valuable history."
-        <cite>— Volley Nchabeleng</cite>
-      </blockquote>
-      <div class="contact-links reveal">
-        <a href="mailto:sebeinape@gmail.com" class="contact-link">
-          <div class="contact-link-icon">✉</div>
-          <span>sebeinape@gmail.com</span>
-        </a>
-        <a href="tel:+27725452126" class="contact-link">
-          <div class="contact-link-icon">☎</div>
-          <span>072 545 2126</span>
-        </a>
+  <!-- JOIN -->
+
+  <section id="join">
+
+    <h2 class="section-title">Membership Application</h2>
+
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+      <input type="hidden" name="access_key" value="6e1b0a49-1a46-4b9d-bb71-a057ceac0252">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="Full Name" placeholder="Enter your full name" required>
       </div>
-      <div class="reveal">
-        <a href="mailto:sebeinape@gmail.com" class="btn btn-primary">Send a Message</a>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="Email Address" placeholder="Enter your email" required>
       </div>
-    </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" name="Phone Number" placeholder="Enter your phone number" required>
+      </div>
+
+      <div class="form-group">
+        <label>Where Are You From?</label>
+        <input type="text" name="Location" placeholder="Country / City" required>
+      </div>
+
+      <div class="form-group">
+        <label>What Do You Do?</label>
+        <input type="text" name="Occupation" placeholder="Business / Career / Profession" required>
+      </div>
+
+      <div class="form-group">
+        <label>Average Annual Income</label>
+
+        <select name="Income" required>
+          <option>Select Range</option>
+          <option>$10,000 - $50,000</option>
+          <option>$50,000 - $100,000</option>
+          <option>$100,000 - $500,000</option>
+          <option>$500,000+</option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>What Impact Would You Bring To Nexus?</label>
+
+        <textarea
+          name="Contribution"
+          placeholder="Tell us how you can contribute to the community..."
+          required
+        ></textarea>
+
+      </div>
+
+      <button type="submit">Submit Application</button>
+
+    </form>
+
   </section>
 
   <!-- FOOTER -->
+
   <footer>
-    <span class="footer-logo">Volley Nchabeleng</span>
-    <span>Ambassador of African Classical Musical Instruments</span>
-    <span>Limpopo · South Africa</span>
+
+    <h3>NEXUS</h3>
+
+    <p>Connecting Ideas. Building Success.</p>
+
   </footer>
 
   <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
+
+    function sendMessage(){
+
+      let input = document.getElementById("chatMessage");
+      let messages = document.getElementById("messages");
+
+      if(input.value.trim() !== ""){
+
+        let newMessage = document.createElement("div");
+
+        newMessage.classList.add("message");
+
+        newMessage.innerHTML =
+        "<strong>You:</strong> " + input.value;
+
+        messages.appendChild(newMessage);
+
+        let userText = input.value.toLowerCase();
+
+        input.value = "";
+
+        messages.scrollTop = messages.scrollHeight;
+
+        setTimeout(() => {
+
+          let reply = document.createElement("div");
+
+          reply.classList.add("message");
+
+          if(userText.includes("investment")){
+
+            reply.innerHTML =
+            "<strong>Sarah:</strong> Let's discuss the investment opportunity privately.";
+
+          }
+
+          else if(userText.includes("startup")){
+
+            reply.innerHTML =
+            "<strong>David:</strong> Your startup sounds interesting. Tell us more.";
+
+          }
+
+          else{
+
+            reply.innerHTML =
+            "<strong>Nexus AI:</strong> Thank you for contributing to the discussion.";
+
+          }
+
+          messages.appendChild(reply);
+
+          messages.scrollTop = messages.scrollHeight;
+
+        },1000);
+
+      }
+
+    }
+
+    const observer = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("show");
+
         }
+
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+
+    });
+
+    document.querySelectorAll("section").forEach(sec => {
+
+      sec.classList.add("hidden");
+
+      observer.observe(sec);
+
+    });
+
   </script>
+
 </body>
 </html>
